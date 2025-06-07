@@ -3,7 +3,9 @@
 const { Telegraf } = require('telegraf');
 const axios = require('axios');
 
-const bot = new Telegraf('7987240578:AAHIc5vrd0IxK6tlDGoMGato6JG5znwZz5s');
+console.log("Token is:", process.env.BOT_TOKEN);
+const bot = new Telegraf(process.env.BOT_TOKEN);
+
 
 // Хранилище времени последнего запроса
 const userLastRequest = new Map();
@@ -12,7 +14,7 @@ const userLastRequest = new Map();
 bot.start((ctx) => ctx.reply('Салам! Пришли мне ссылку на TikTok-видео.'));
 
 // Обработка текста
-bot.on('text', async (ctx) => {
+bot.on('text', async (ctx) => { 
   const userId = ctx.from.id;
   const now = Date.now();
   const lastTime = userLastRequest.get(userId) || 0;
